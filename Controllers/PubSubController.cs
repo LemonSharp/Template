@@ -31,7 +31,7 @@ public class PubSubController : ControllerBase
 
     [HttpPost]
     [Topic("pubsub", "test")]
-    public IActionResult Consume(object msg)
+    public IActionResult Consume([FromBody]object msg)
     {
         _logger.LogInformation("Consumed message: {msg}", System.Text.Json.JsonSerializer.Serialize(msg));
         num++;

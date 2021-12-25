@@ -18,6 +18,8 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseCloudEvents();
+
 app.MapControllers();
 app.MapSubscribeHandler();
 app.MapFallback(() => "Hello world");
