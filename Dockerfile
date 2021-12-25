@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+EXPOSE 80
 # use forward headers
 ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
 
