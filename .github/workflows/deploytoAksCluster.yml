@@ -1,4 +1,7 @@
+name: deploy
+
 on: [push]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -26,7 +29,7 @@ jobs:
       with:
         container-registry-url: lemonsharp.azurecr.io
         container-registry-username: lemonsharp
-        container-registry-password: ${{ REGISTRY_PASSWORD }}
+        container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: containerregistryauth
        
     - uses: azure/k8s-deploy@v1.2

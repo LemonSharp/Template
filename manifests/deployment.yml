@@ -11,6 +11,9 @@ spec:
       app: "test"
   template:
     metadata:
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "test"
       labels:
         app: "test"
     spec:

@@ -15,7 +15,7 @@ jobs:
     - name: build
       run: dotnet build
     - name: format
-      run: dotnet format
+      run: dotnet format ./DaprTest.csproj
     - name: check for changes
       run: |
         if git diff --exit-code; then
