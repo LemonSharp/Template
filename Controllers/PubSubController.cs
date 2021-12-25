@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DaprTest.Controllers;
 
 [Route("[controller]/[action]")]
-public class PubSubController: ControllerBase
+public class PubSubController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Publish([FromServices] DaprClient daprClient)
