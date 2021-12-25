@@ -19,5 +19,6 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.MapControllers();
+app.MapSubscribeHandler();
 app.MapFallback(() => "Hello world");
 app.Run();
