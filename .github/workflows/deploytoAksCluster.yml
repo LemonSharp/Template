@@ -17,7 +17,8 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t lemonsharp.azurecr.io/test:${{ github.sha }} --label dockerfile-path=Dockerfile
+        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t lemonsharp.azurecr.io/test:latest -t lemonsharp.azurecr.io/test:${{ github.sha }} --label dockerfile-path=Dockerfile
+        docker push lemonsharp.azurecr.io/test:latest
         docker push lemonsharp.azurecr.io/test:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1

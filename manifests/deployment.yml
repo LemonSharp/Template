@@ -12,12 +12,14 @@ spec:
   template:
     metadata:
       annotations:
-        dapr.io/enabled: "true"
+        dapr.io/enabled: "false"
         dapr.io/app-id: "test"
         dapr.io/app-port: "80"       
       labels:
         app: "test"
     spec:
+      imagePullSecrets:
+        - name: containerregistryauth
       containers:
         - name: "test"
           image: "lemonsharp.azurecr.io/test"
