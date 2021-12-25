@@ -23,7 +23,7 @@ namespace DaprTest.Controllers
         [HttpGet]
         public async Task<IActionResult> Test([FromServices] DaprClient daprClient)
         {
-            var result = await daprClient.InvokeMethodAsync<object>("dapr-test", "ServiceInvocation/Hello");
+            var result = await daprClient.InvokeMethodAsync<object>("test", "ServiceInvocation/Hello");
             return Ok(new { Result = result });
         }
     }

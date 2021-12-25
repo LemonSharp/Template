@@ -11,10 +11,18 @@ namespace DaprTest.Controllers;
 [Route("[controller]/[action]")]
 public class PubSubController : ControllerBase
 {
+    private readonly ILogger _logger;
+
+    public PubSubController(ILogger<PubSubController> logger)
+    {
+        _logger = logger;
+    }
+
+    private static int num;
     [HttpPost]
     public async Task<IActionResult> Publish([FromServices] DaprClient daprClient)
     {
-        await daprClient.PublishEventAsync("redis", "test", new
+        await daprClient.PublishEventAsync("pubsub", "test", new
         {
             Message = "test"
         });
@@ -22,10 +30,20 @@ public class PubSubController : ControllerBase
     }
 
     [HttpPost]
-    [Topic("redis", "test")]
+    [Topic("pubsub", "test")]
     public IActionResult Consume(object msg)
     {
-        Console.WriteLine("Consume triggered");
-        return Ok();
+        _logger.LogInformation("Consumed message: {msg}", System.Text.Json.JsonSerializer.Serialize(msg));
+        num++;
+        return Ok(msg);
+    }
+
+    [HttpGet]
+    public IActionResult Counter()
+    {
+        return Ok(new
+        {
+            Num = num
+        });
     }
 }
